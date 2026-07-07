@@ -1,79 +1,175 @@
-# IOTLink Product Overview
+# IOTLink Product Description
 
-<img width="1181" height="634" alt="图片" src="https://github.com/user-attachments/assets/c95c951a-3bb7-4b73-b1aa-a2ddfa7182cc" />
-<img width="684" height="239" alt="图片" src="https://github.com/user-attachments/assets/0c653294-98b5-4c4f-b91c-8641371870fe" />
+## 1. Product Overview
 
+**IOTLink** is a desktop engineering workstation for IoT connectivity, MQTT debugging, remote operations, protocol testing, automation, and AI-assisted development. It brings commonly separated tools into one workspace so engineers can configure connections, inspect data, run remote operations, edit project files, and manage repeatable tasks without constantly switching applications.
 
-IOTLink is a local desktop workbench for IoT, edge-device, and field operations debugging. It brings MQTT message testing, SSH remote terminals, SFTP file transfer, UART serial debugging, Modbus tools, HEX inspection, VNC remote desktop, and AI-assisted analysis into one workspace. It is designed for engineers, testers, delivery teams, and operations users who need to troubleshoot an end-to-end device-to-cloud chain.
-
-The product is not intended to replace one specific tool. Its value is in reducing context switching across many single-purpose tools during field debugging. Within one scheme, users can preserve publish topic trees, subscriptions, connection sessions, quick commands, macros, and workspace layout, turning a troubleshooting process into reusable project knowledge.
-
-## Positioning
-
-IOTLink is useful when device-side, edge-side, and cloud message-side signals must be inspected together. A typical issue may involve device boot logs over UART, a Linux service checked through SSH, cloud messages observed through MQTT, and payloads that need to be decoded as HEX, JSON, Modbus, or another custom format. IOTLink keeps these work surfaces inside one evolving local client.
-
-Current version: `v1.0.5.7`.
-
-## Core Capabilities
-
-<img width="1121" height="535" alt="图片" src="https://github.com/user-attachments/assets/ac9cac57-3d14-4033-90a4-6ab301feb17f" />
+The product is designed for Windows-based development, commissioning, integration, and operations scenarios where MQTT, serial devices, SSH hosts, VNC sessions, HTTP services, Modbus devices, scripts, and local project files need to be handled together.
 
 
-**MQTT Debugging**  
-Manage multiple Broker profiles, publish and subscribe to topics, filter messages, inspect payloads, export data, run JavaScript preprocessing before publish, and build stream conversion rules for protocol validation and lightweight message routing experiments.
+## 2. Architecture Diagram
 
-**SSH / SFTP Remote Work**  
-Use interactive SSH terminals, SFTP file browsing and transfer, multi-tab connections, quick commands, and SSH macros. Remote commands, file operations, and session logs can be organized around the same workspace for parallel host troubleshooting.
+The diagram below shows the high-level relationship between the IOTLink application shell, engineering tools, AI collaboration capabilities, and managed resources.
 
-**Serial and Modbus Debugging**  
-The serial panel supports UART logs, console interaction, and send-window workflows. The Modbus tool provides dedicated protocol debugging. Selected log text can be decoded through context menus or sent to AI for assisted analysis.
+![IOTLink Architecture Diagram](IOTLink_Architecture_EN.svg)
 
-**HEX and "Decode As"**  
-Binary payloads, serial data, and log fragments can be inspected and decoded through a unified entry point. The context-menu "Decode As" flow helps interpret selected content without copying it into external tools.
+A Mermaid version is also included for Markdown platforms that support Mermaid rendering and further editing:
 
-**AI Chat Assistance**  
-The AI chat window uses a light blue-accented style and can receive selected text from MQTT, serial, SSH Term, and related views. It is intended for log explanation, configuration review, script drafting, SSH macro suggestions, and protocol-fragment analysis. AI output is never executed automatically; users remain in control of all actions.
+```mermaid
+flowchart TB
+    U[Engineering, Integration, and Operations Users] --> S[IOTLink Application Shell\nWorkspaces · Tabs · Configuration · Backup & Restore]
+    S --> T1[MQTT Workspace\nPublish · Subscribe · Streams · Dashboards]
+    S --> T2[Remote Access\nSSH · SFTP · VNC · Serial]
+    S --> T3[Protocol and Service Debugging\nHTTP · Modbus · Bluetooth · Payload Tools]
+    S --> T4[Automation\nTasks · Macros · JavaScript · Local Execution]
+    S --> A1[AI Assistant\nConversations · Configuration · Request Records]
+    S --> A2[AI Coding Assistant\nTask Plans · Repository Map · Controlled Tools]
+    A2 --> E[Source Editor\nMulti-encoding Detection · View · Edit · Save]
+    A2 --> P[Real Local Terminal\nWindows ConPTY · libvterm · Interactive Shell]
+    A2 --> G[Git Workspace Management\nStatus · Init · Diff · History]
+    T1 --> D[MQTT Broker and Field Devices]
+    T2 --> H[SSH Hosts and VNC Hosts]
+    T3 --> D
+    T4 --> D
+    E --> F[Local Workspaces and Git Repositories]
+    P --> F
+    G --> F
+    A1 --> M[AI Model Services\nOpenAI-compatible APIs · Local Models]
+    A2 --> M
+```
 
-**Schemes and Session Reuse**  
-Scheme folders and session recovery preserve structured debugging state. Teams can reuse common topic trees, subscriptions, quick commands, macros, and workspace layouts as project assets.
+## 3. Target Users
 
-## Typical Workflow
+- IoT platform and edge-device engineers
+- MQTT integration and commissioning engineers
+- Industrial automation and protocol-test engineers
+- Remote operations and technical-support teams
+- Developers working with local source repositories and AI-assisted coding workflows
 
-![IOTLink debugging workflow](assets/debug-workflow-en.svg)
+## 4. Core Value
 
-1. **Connect to the field**: connect to an MQTT Broker, SSH host, serial device, or VNC desktop.
-2. **Observe data**: inspect subscribed messages, terminal output, serial logs, and file transfer results.
-3. **Decode payloads**: run "Decode As" on payloads, logs, Modbus data, or HEX fragments.
-4. **Use AI assistance**: send key fragments to AI for log analysis, script suggestions, or troubleshooting steps.
-5. **Preserve and reuse**: save connections, schemes, quick commands, and macros as reusable field-debugging templates.
+| Value                    | Description                                                  |
+| ------------------------ | ------------------------------------------------------------ |
+| One workspace            | Manage connections, messaging, remote sessions, scripts, plans, and project files in one desktop application. |
+| Faster troubleshooting   | Observe MQTT traffic, terminal output, protocol data, and task execution in the same context. |
+| Reusable operations      | Save connection profiles, schemes, macros, publishing tasks, scripts, and workspace data for repeatable work. |
+| Controlled AI assistance | Use AI coding workflows with task plans, workspace-scoped tools, evidence checks, and reviewable file changes. |
+| Practical local tooling  | Work with SSH, VNC, serial ports, HTTP, Modbus, Git, source files, and a real local terminal from the same interface. |
 
-## Use Cases
+## 5. Main Capabilities
 
-- MQTT protocol testing, serial boot-log inspection, and binary payload validation during device development.
-- SSH-based remote inspection, log troubleshooting, and file transfer for edge gateways, Linux devices, or servers.
-- Field delivery scenarios with weak networks, offline environments, or serial-console-only access.
-- Cross-chain issues that require observing device-side, edge-side, and cloud-message-side behavior together.
-- Projects that need to turn one troubleshooting session into reusable schemes, macros, and team configuration.
+### 4.1 MQTT Engineering Workspace
 
-## Product Value
+- Create and manage MQTT connection profiles, including broker address, authentication, TLS, and SSH tunnel settings.
+- Publish messages with topic, QoS, retain flag, text payload, hexadecimal payload, notes, and JavaScript preprocessing.
+- Subscribe to topic filters with `+` and `#` wildcards, inspect incoming messages, and filter received data.
+- Build stream-transform rules that consume source topics, run JavaScript transformations, and forward results to target topics.
+- Create periodic publishing tasks and manage them as reusable operational jobs.
+- Display selected message data through live dashboards and configurable visual views.
 
-- **Less tool switching**: MQTT, SSH, serial, HEX, Modbus, VNC, and AI assistance work in one workspace.
-- **Shorter troubleshooting path**: move from log observation to payload decoding, script suggestions, and scheme reuse in one flow.
-- **Lower operational risk**: AI output is not auto-executed; decode menus are placed at the bottom of context menus; high-risk commands and macros can be paired with confirmation flows.
-- **Reusable team knowledge**: scheme folders, session recovery, quick commands, and macros make debugging experience portable.
-- **Local-first usage**: as a desktop client, it remains practical in offline, weak-network, and restricted field environments.
+### 4.2 Workspace, Scheme, and Session Management
 
-## Version Highlights
+- Open multiple workspaces through top-level tabs.
+- Separate persistent connection profiles from runtime sessions and workspace tabs.
+- Save and load schemes containing publishing, subscription, stream, task, and script configurations.
+- Use free sessions for temporary work and profile-backed sessions for repeatable operations.
+- Restore saved workspace data and maintain backup-friendly configuration storage.
 
-`v1.0.5.7` focuses on AI-assisted workflows and context-menu decoding:
+### 4.3 Remote Access and Device Operations
 
-- AI chat now uses a Codex-like light theme with blue accents.
-- Selected text from MQTT, serial, and SSH Term views can be sent to AI from context menus.
-- Modbus logs now support "Decode As" and reuse the MQTT-style decoding flow.
-- "Decode As" menus are consistently placed at the bottom of context menus to reduce accidental submenu popups.
-- Odd-length pure-HEX selections no longer show a blocking "must be even bytes" warning; they are handled as plain text.
-- The send-window page has been restyled to better match the receive view, with blue-tinted borders.
+- SSH remote management with terminal interaction, quick commands, macros, and SFTP file operations.
+- VNC remote access for graphical remote-control scenarios.
+- Serial debugging for direct device communication.
+- SSH session macros for repeatable operations such as command sending, output waiting, retries, local execution, MQTT actions, SFTP transfers, and Excel-based data processing.
 
-## Boundaries
+### 4.4 Protocol and Service Debugging
 
-IOTLink is a local debugging and operations-assistance tool. It does not replace an MQTT Broker, SSH server, device firmware, production monitoring platform, or formal release system. For high-risk operations such as deletion, overwrite, restart, and batch execution, users should follow the actual field permissions, backup strategy, and manual confirmation process.# IOTLink Product Overview
+IOTLink includes modular tooling for common integration work:
+
+- HTTP debugging
+- Modbus and virtual Modbus testing
+- Bluetooth debugging
+- Serial communication debugging
+- MQTT batch operations
+- Payload encoding and decoding
+- Hexadecimal viewing and editing
+- Stream transformation and system scripting
+
+### 4.5 AI Assistant and AI Coding Assistant
+
+The product includes an AI assistant for product-level interaction and an AI coding assistant for controlled workspace development.
+
+The AI coding assistant supports:
+
+- OpenAI-compatible chat-completions providers and optional local-model service integration.
+- Task-oriented conversations with an execution plan that can reflect completion, blocked states, and verification status.
+- Workspace-scoped file operations and repository mapping.
+- Evidence-oriented checks and atomic multi-file editing workflows.
+- Source browsing, file editing, saving, encoding selection, and Git actions from the workspace tree.
+- A persistent Windows ConPTY terminal session for interactive command-line work, including retained shell state, working directory, environment variables, and interactive program state.
+
+## 6. Source Editor and Local Terminal
+
+### Source Editor
+
+The built-in source editor is intentionally workspace-scoped. It supports browsing files through a directory tree, opening common source and configuration files, editing content, and saving changes safely within the selected workspace.
+
+Supported text encodings include:
+
+- UTF-8
+- UTF-8 with BOM
+- GB18030
+- GBK
+- UTF-16 LE
+- UTF-16 BE
+- System-default encoding
+
+The editor can detect common encodings when opening a file and lets the user choose the output encoding when saving.
+
+### Real Terminal
+
+The local terminal is based on a persistent Windows ConPTY session rather than launching a separate process for every command. This allows normal shell behavior, including:
+
+- Direct keyboard input
+- Persistent `cd` state
+- Persistent environment variables
+- Tab completion and arrow-key navigation
+- Interactive command-line applications
+- Clipboard paste and interrupt handling
+- Terminal resizing synchronized with the visible terminal grid
+
+## 7. Git Support in the Workspace Tree
+
+Directory nodes in the source tree provide Git-oriented actions for project-level work, including:
+
+- Repository status inspection
+- Repository initialization
+- Diff viewing
+- Commit-history viewing
+
+These actions are executed through the local terminal context so developers can keep Git operations aligned with the active workspace.
+
+## 8. Automation and Scriptability
+
+IOTLink supports reusable automation through JavaScript system scripts, publishing tasks, stream rules, SSH macros, and local execution steps. Depending on the selected function, a workflow can combine MQTT messaging, terminal commands, SSH operations, SFTP transfers, conditional waits, JavaScript logic, and spreadsheet data processing.
+
+This makes the product suitable for repeated commissioning procedures, test sequences, device-data checks, and operational playbooks.
+
+## 9. Security and Operational Controls
+
+- Connection profiles and workspace contexts are separated to reduce accidental cross-environment actions.
+- AI coding operations are designed around workspace boundaries, repository maps, controlled tool calls, evidence checks, and reviewable changes.
+- SSH, VNC, serial, and local-terminal functions should be used with the organization’s normal access-control, credential-management, and network-security requirements.
+- Backup and restore workflows should be used for configuration and workspace continuity; production credentials and sensitive project content should be protected according to internal policy.
+
+## 10. Typical Use Cases
+
+1. **MQTT device commissioning** — connect to a broker, publish control messages, subscribe to device telemetry, and save the setup as a reusable scheme.
+2. **Remote device maintenance** — use SSH terminal, SFTP, macros, and quick commands to inspect and update remote equipment.
+3. **Protocol integration testing** — combine HTTP, Modbus, serial, Bluetooth, and MQTT tools in one workspace.
+4. **Operational automation** — run scheduled publishing tasks, stream transformations, and repeatable macro procedures.
+5. **AI-assisted project work** — inspect a source tree, edit files with encoding control, run commands in a real terminal, review Git status, and track a task plan.
+
+## 11. Technical Positioning
+
+IOTLink is built as a modular Qt desktop application. The AI coding module targets a Qt 5.14-compatible Windows toolchain and uses C++17. The architecture separates feature modules such as MQTT, SSH, VNC, serial debugging, protocol tooling, local models, AI coding, and the application shell, enabling product functions to evolve without coupling all capabilities into a single feature area.
